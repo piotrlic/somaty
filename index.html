@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>somaTY – Joanna Lichwała | Psychoterapeuta Relacji</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#f7f5f0;
+  --cream-dark:#ece8df;
+  --silver:#9a9a9a;
+  --silver-light:#c5c5c5;
+  --silver-dark:#6b6b6b;
+  --gold:#b8972e;
+  --gold-light:#d4b44a;
+  --gold-muted:#c9a93a22;
+  --charcoal:#3a3a3a;
+  --text:#4a4540;
+  --text-light:#7a7570;
+  --white:#fff;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Jost',sans-serif;
+  color:var(--text);
+  background:var(--cream);
+  line-height:1.7;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+/* ===== NAVIGATION ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(247,245,240,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(154,154,154,0.12);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,0.06)}
+.nav-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.8rem 2rem;
+}
+.nav-logo{height:44px;opacity:0.9;transition:opacity .3s}
+.nav-logo:hover{opacity:1}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  text-decoration:none;color:var(--silver-dark);
+  font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;
+  font-weight:400;position:relative;transition:color .3s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--gold);transition:width .4s cubic-bezier(.25,.46,.45,.94);
+}
+.nav-links a:hover{color:var(--charcoal)}
+.nav-links a:hover::after{width:100%}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:1.5px;background:var(--silver-dark);transition:all .3s}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,var(--cream) 0%,#f0ece3 40%,var(--cream-dark) 100%);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 30%,rgba(184,151,46,0.06) 0%,transparent 60%),
+             radial-gradient(ellipse at 20% 80%,rgba(154,154,154,0.05) 0%,transparent 50%);
+}
+/* Decorative brushstroke circle */
+.hero-circle{
+  position:absolute;
+  width:min(600px,80vw);height:min(600px,80vw);
+  border:2px solid rgba(154,154,154,0.12);
+  border-radius:50%;
+  animation:breathe 8s ease-in-out infinite;
+}
+.hero-circle::before{
+  content:'';position:absolute;inset:-8px;
+  border:1px solid rgba(154,154,154,0.06);
+  border-radius:50%;
+}
+@keyframes breathe{
+  0%,100%{transform:scale(1);opacity:0.6}
+  50%{transform:scale(1.02);opacity:0.9}
+}
+
+.hero-content{
+  position:relative;z-index:2;text-align:center;
+  padding:2rem;max-width:720px;
+}
+.hero-logo{
+  width:min(260px,60vw);margin-bottom:2.5rem;
+  animation:fadeUp 1.2s ease-out;
+}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,3.5vw,2.4rem);
+  font-weight:300;letter-spacing:0.08em;
+  color:var(--charcoal);
+  margin-bottom:0.5rem;
+  animation:fadeUp 1.2s ease-out 0.2s both;
+}
+.hero-title{
+  font-size:0.9rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:400;
+  margin-bottom:2rem;
+  animation:fadeUp 1.2s ease-out 0.4s both;
+}
+.hero-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,2vw,1.25rem);
+  font-weight:300;font-style:italic;
+  color:var(--text-light);
+  line-height:1.8;
+  animation:fadeUp 1.2s ease-out 0.6s both;
+}
+.hero-cta{
+  display:inline-block;margin-top:2.5rem;
+  padding:0.85rem 2.8rem;
+  border:1px solid var(--gold);color:var(--gold);
+  text-decoration:none;font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;
+  font-weight:400;transition:all .4s;
+  animation:fadeUp 1.2s ease-out 0.8s both;
+}
+.hero-cta:hover{
+  background:var(--gold);color:var(--cream);
+  box-shadow:0 4px 20px rgba(184,151,46,0.2);
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== SECTIONS ===== */
+section{padding:6rem 2rem}
+.section-inner{max-width:900px;margin:0 auto}
+
+.section-label{
+  font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-bottom:1rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.section-label::before{
+  content:'';width:40px;height:1px;background:var(--gold);
+}
+.section-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  font-weight:300;color:var(--charcoal);
+  margin-bottom:2rem;line-height:1.3;
+}
+
+/* ===== O MNIE ===== */
+.about{background:var(--cream)}
+.about-grid{
+  display:grid;grid-template-columns:320px 1fr;gap:3.5rem;
+  margin-top:2rem;align-items:start;
+}
+.about-photo{
+  position:relative;
+}
+.about-photo img{
+  width:100%;display:block;
+  filter:grayscale(15%) contrast(1.02);
+  transition:filter .5s;
+}
+.about-photo:hover img{filter:grayscale(0%) contrast(1)}
+.about-photo::before{
+  content:'';position:absolute;
+  top:12px;left:12px;right:-12px;bottom:-12px;
+  border:1px solid var(--gold);z-index:-1;
+  transition:all .4s;
+}
+.about-photo:hover::before{top:8px;left:8px;right:-8px;bottom:-8px}
+.about p{
+  font-size:1.02rem;color:var(--text);line-height:1.85;
+  margin-bottom:1.2rem;
+}
+.about strong{color:var(--charcoal);font-weight:500}
+
+.highlight-box{
+  border-left:2px solid var(--gold);
+  padding:1.5rem 2rem;
+  background:linear-gradient(90deg,var(--gold-muted),transparent 80%);
+  margin:2rem 0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-style:italic;
+  color:var(--text-light);line-height:1.8;
+}
+
+/* ===== METODY ===== */
+.methods{background:var(--white)}
+.methods-content p{
+  font-size:1.02rem;line-height:1.85;margin-bottom:1.2rem;
+}
+
+/* ===== OBSZARY ===== */
+.areas{background:var(--cream)}
+.areas-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem;margin-top:2.5rem;
+}
+.area-card{
+  padding:2rem;
+  background:var(--white);
+  border:1px solid rgba(154,154,154,0.1);
+  transition:all .4s;position:relative;overflow:hidden;
+}
+.area-card::before{
+  content:'';position:absolute;top:0;left:0;width:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  transition:width .5s cubic-bezier(.25,.46,.45,.94);
+}
+.area-card:hover::before{width:100%}
+.area-card:hover{
+  box-shadow:0 8px 32px rgba(0,0,0,0.06);
+  transform:translateY(-2px);
+}
+.area-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:500;
+  color:var(--charcoal);margin-bottom:0.8rem;
+}
+.area-card p{
+  font-size:0.92rem;color:var(--text-light);line-height:1.7;
+}
+
+/* ===== DOSWIADCZENIE ===== */
+.experience{background:var(--white)}
+.experience p{
+  font-size:1.02rem;line-height:1.85;margin-bottom:1.2rem;
+}
+
+/* ===== KONTAKT ===== */
+.contact{
+  background:linear-gradient(170deg,#3a3632 0%,#2a2825 100%);
+  color:var(--cream-dark);
+  position:relative;
+}
+.contact .section-heading{color:var(--cream)}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;margin-top:2rem;
+}
+.contact-info{display:flex;flex-direction:column;gap:1.8rem}
+.contact-item{display:flex;align-items:flex-start;gap:1rem}
+.contact-icon{
+  width:40px;height:40px;
+  border:1px solid rgba(184,151,46,0.3);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--gold);font-size:0.9rem;
+}
+.contact-item-text h4{
+  font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--gold);font-weight:400;margin-bottom:0.3rem;
+}
+.contact-item-text p,
+.contact-item-text a{
+  font-size:1rem;color:var(--cream-dark);text-decoration:none;
+  transition:color .3s;
+}
+.contact-item-text a:hover{color:var(--gold-light)}
+
+.contact-cta{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:3rem;
+  border:1px solid rgba(184,151,46,0.15);
+  background:rgba(184,151,46,0.03);
+}
+.contact-cta p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-style:italic;
+  color:var(--cream-dark);line-height:1.7;
+  margin-bottom:2rem;
+}
+.contact-cta .cta-btn{
+  display:inline-block;
+  padding:0.85rem 2.5rem;
+  background:var(--gold);color:var(--cream);
+  text-decoration:none;font-size:0.8rem;letter-spacing:0.15em;
+  text-transform:uppercase;font-weight:400;
+  transition:all .4s;
+}
+.contact-cta .cta-btn:hover{
+  background:var(--gold-light);
+  box-shadow:0 4px 20px rgba(184,151,46,0.3);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#252320;
+  padding:2rem;text-align:center;
+  color:var(--silver);font-size:0.8rem;
+  letter-spacing:0.08em;
+}
+footer a{color:var(--gold);text-decoration:none}
+footer a:hover{color:var(--gold-light)}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 0.8s ease-out,transform 0.8s ease-out;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .nav-links{
+    position:fixed;top:0;right:-100%;width:70%;height:100vh;
+    flex-direction:column;justify-content:center;align-items:center;
+    background:rgba(247,245,240,0.98);backdrop-filter:blur(20px);
+    transition:right .4s cubic-bezier(.25,.46,.45,.94);
+    gap:2.5rem;
+  }
+  .nav-links.open{right:0}
+  .hamburger{display:flex}
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+  
+  section{padding:4rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:2rem}
+  .about-photo{max-width:280px;margin:0 auto}
+  .contact-grid{grid-template-columns:1fr;gap:2rem}
+  .areas-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero"><img src="somaty_transparent.png" alt="somaTY logo" class="nav-logo"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#omnie" onclick="closeNav()">O mnie</a></li>
+      <li><a href="#metody" onclick="closeNav()">Metody pracy</a></li>
+      <li><a href="#obszary" onclick="closeNav()">Obszary</a></li>
+      <li><a href="#doswiadczenie" onclick="closeNav()">Doświadczenie</a></li>
+      <li><a href="#kontakt" onclick="closeNav()">Kontakt</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-circle"></div>
+  <div class="hero-content">
+    <img src="somaty_transparent.png" alt="somaTY" class="hero-logo">
+    <h1 class="hero-name">Joanna Lichwała</h1>
+    <p class="hero-title">Psychoterapeuta Relacji</p>
+    <p class="hero-tagline">Postrzegam człowieka jako nierozerwalna całość,<br>w której myśli, emocje i ciało wzajemnie na siebie oddziałują.</p>
+    <a href="#kontakt" class="hero-cta">Umów wizytę</a>
+  </div>
+</section>
+
+<!-- O MNIE -->
+<section class="about" id="omnie">
+  <div class="section-inner reveal">
+    <span class="section-label">O mnie</span>
+    <h2 class="section-heading">Bezpieczna, autentyczna<br>i pełna empatii relacja</h2>
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="joanna-lichwala.jpg" alt="Joanna Lichwała — Psychoterapeuta Relacji">
+      </div>
+      <div>
+        <p>Jestem psychoterapeutką w procesie certyfikacji w humanistyczno-doświadczeniowym nurcie Gestalt. W mojej praktyce kieruję się <strong>podejściem holistycznym</strong> — postrzegam człowieka jako nierozerwalna całość, w której myśli, emocje i ciało wzajemnie na siebie oddziałują.</p>
+        <p>Wierzę, że każdy z nas posiada wewnętrzne zasoby niezbędne do uzdrowienia, a terapia jest procesem ich odzyskiwania.</p>
+        
+        <div class="highlight-box">
+          Do każdego spotkania podchodzę z głębokim zaciekawieniem Twoją unikalną historią. Moim zadaniem nie jest dawanie gotowych recept czy narzucanie rozwiązań, lecz towarzyszenie Ci w drodze do samopoznania.
+        </div>
+        
+        <p>Szanuję Twoje tempo i wierzę, że zmiana wydarza się wtedy, gdy pojawia się na nią gotowość i przestrzeń.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODY -->
+<section class="methods" id="metody">
+  <div class="section-inner reveal">
+    <span class="section-label">Podejście</span>
+    <h2 class="section-heading">Ciało, Emocje i Twórczość</h2>
+    <div class="methods-content">
+      <p>W proces terapeutyczny włączam <strong>uważną pracę z ciałem</strong>. Uczę, jak odczytywać sygnały płynące z organizmu i jak integrować sferę fizyczną z przeżywaniem emocji. Często to właśnie ciało jako pierwsze komunikuje nasze potrzeby, których umysł jeszcze nie potrafi nazwać.</p>
+      <p>Dodatkowo, tam gdzie słowa to za mało, wykorzystuję <strong>doświadczenia arteterapeutyczne</strong>, które pozwalają na ekspresję trudnych treści w bezpieczny, symboliczny sposób.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBSZARY -->
+<section class="areas" id="obszary">
+  <div class="section-inner reveal">
+    <span class="section-label">Specjalizacja</span>
+    <h2 class="section-heading">Obszary pracy</h2>
+    <div class="areas-grid">
+      <div class="area-card">
+        <h3>Kryzysy życiowe i relacyjne</h3>
+        <p>Wsparcie w trudnych momentach przejścia, konfliktach, poczuciu osamotnienia i lęku.</p>
+      </div>
+      <div class="area-card">
+        <h3>Psychosomatyka</h3>
+        <p>Praca z objawami płynącymi z ciała, które nie mają podłoża medycznego.</p>
+      </div>
+      <div class="area-card">
+        <h3>Wypalenie zawodowe</h3>
+        <p>Pomoc w odzyskiwaniu sprawczości i równowagi między pracą a życiem prywatnym.</p>
+      </div>
+      <div class="area-card">
+        <h3>Neuroatypowość i neuroróżnorodność</h3>
+        <p>Wsparcie w zrozumieniu własnego sposobu funkcjonowania w świecie.</p>
+      </div>
+      <div class="area-card">
+        <h3>Zaburzenia osobowości</h3>
+        <p>Długoterminowa praca nad budowaniem stabilnej tożsamości.</p>
+      </div>
+    </div>
+    <p style="margin-top:2.5rem;font-size:0.95rem;color:var(--text-light);text-align:center">
+      Zapraszam na terapię indywidualną dorosłych, młodzież (15+) oraz rodzin.
+    </p>
+  </div>
+</section>
+
+<!-- DOŚWIADCZENIE -->
+<section class="experience" id="doswiadczenie">
+  <div class="section-inner reveal">
+    <span class="section-label">Doświadczenie</span>
+    <h2 class="section-heading">Wielowymiarowa droga<br>do psychoterapii</h2>
+    <p>Moja wielowymiarowa droga do psychoterapii jest dziś moim ogromnym zasobem. Doświadczenie zdobyte w korporacjach oraz instytucjach publicznych pozwala mi doskonale rozumieć specyfikę <strong>stresu zawodowego</strong> i mechanizmy wypalenia.</p>
+    <p>Z kolei wieloletnia praca z klientem indywidualnym w branży projektowej nauczyła mnie uważności na drugiego człowieka, jego relacje i estetykę przeżywania świata.</p>
+    <p>Swoje kompetencje stale rozwijam poprzez warsztaty i treningi rozwojowe. Moderuję kobiece kręgi i praktykuję jogę. W wolnych chwilach jestem wolontariuszką w ośrodku dla osób w kryzysie uzależnienia i w gabinecie integracji sensorycznej.</p>
+    
+    <div class="highlight-box">
+      To zróżnicowanie pozwala mi patrzeć na wyzwania moich Klientów z szerokiej perspektywy — zarówno ludzkiej, jak i systemowej.
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="section-inner reveal">
+    <span class="section-label" style="color:var(--gold)">Kontakt</span>
+    <h2 class="section-heading">Zapraszam do kontaktu</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <h4>Adres</h4>
+            <p>somaTY — Gabinet Psychoterapii</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <h4>Email</h4>
+            <a href="mailto:kontakt@somaty.pl">kontakt@somaty.pl</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.81.36 1.6.68 2.34a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <h4>Telefon</h4>
+            <a href="tel:+48000000000">Zadzwoń lub napisz</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <h4>Facebook</h4>
+            <a href="https://www.facebook.com/psychoterapeuta.relacji.somaty" target="_blank" rel="noopener">Psychoterapeuta Relacji somaTY</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <h4>Strona www</h4>
+            <a href="https://somaty.pl">somaty.pl</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <p>Pierwszy krok do zmiany zaczyna się od kontaktu. Zapraszam na wstępną rozmowę.</p>
+        <a href="mailto:kontakt@somaty.pl" class="cta-btn">Napisz do mnie</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 somaTY &mdash; Joanna Lichwała, Psychoterapeuta Relacji &nbsp;|&nbsp; <a href="https://somaty.pl">somaty.pl</a></p>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+function closeNav() {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
