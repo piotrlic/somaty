@@ -236,22 +236,7 @@
             transparent 50%
           );
       }
-      /* Decorative brushstroke circle */
-      .hero-circle {
-        position: absolute;
-        width: min(600px, 80vw);
-        height: min(600px, 80vw);
-        border: 2px solid rgba(154, 154, 154, 0.12);
-        border-radius: 50%;
-        animation: breathe 8s ease-in-out infinite;
-      }
-      .hero-circle::before {
-        content: "";
-        position: absolute;
-        inset: -8px;
-        border: 1px solid rgba(154, 154, 154, 0.06);
-        border-radius: 50%;
-      }
+
       @keyframes breathe {
         0%,
         100% {
@@ -697,7 +682,6 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
-      <div class="hero-circle"></div>
       <div class="hero-content">
         <img src="somaty_transparent.png" alt="somaTY" class="hero-logo" />
         <h1 class="hero-name">Joanna Lichwała</h1>
