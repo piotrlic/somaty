@@ -63,17 +63,44 @@
     />
 
     <!-- SEO: JSON-LD structured data -->
+    <!-- TODO: fill in streetAddress + exact lat/lng below -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "MedicalBusiness",
-        "name": "somaTY — Gabinet Psychoterapii",
-        "description": "Psychoterapia indywidualna dorosłych i młodzieży w nurcie humanistyczno-egzystencjalnym Gestalt. Praca z ciałem, psychosomatyką, wypaleniem zawodowym i neuroróżnorodnością.",
+        "@type": ["MedicalBusiness", "Psychotherapist"],
+        "name": "somaTY — Gabinet Psychoterapii Joanna Lichwała",
+        "description": "Psychoterapia indywidualna dorosłych i młodzieży w nurcie humanistyczno-egzystencjalnym Gestalt. Praca z ciałem, psychosomatyką, wypaleniem zawodowym i neuroróżnorodnością. Gabinet w Aleksandrowie Łódzkim (niedaleko Łodzi).",
         "url": "https://somaty.pl",
         "telephone": "+48665239599",
         "email": "joanna.lichwala@gmail.com",
         "image": "https://somaty.pl/joanna-lichwala-terapeuta.png",
         "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "",
+          "addressLocality": "Aleksandrów Łódzki",
+          "postalCode": "95-070",
+          "addressRegion": "łódzkie",
+          "addressCountry": "PL"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.8194,
+          "longitude": 19.3037
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Aleksandrów Łódzki" },
+          { "@type": "City", "name": "Łódź" }
+        ],
+        "medicalSpecialty": "Psychotherapist",
+        "knowsAbout": [
+          "Psychoterapia Gestalt",
+          "Psychoterapia indywidualna",
+          "Psychosomatyka",
+          "Wypalenie zawodowe",
+          "Neuroróżnorodność",
+          "Terapia młodzieży"
+        ],
         "employee": {
           "@type": "Person",
           "name": "Joanna Lichwała",
